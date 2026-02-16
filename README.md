@@ -14,33 +14,41 @@ Open Source Contributions - Bug reports, fixes, and technical analysis.
 ```
 oss-contributions/
 ├── README.md
-└── claude-code-thai-vowel-fix/
-    ├── SUMMARY.md              # Overview and links
-    ├── BUG_REPORT.md           # Detailed bug report
-    ├── FIX_DESCRIPTION.md      # Technical fix description
-    ├── thai-vowel-fix.sh       # Script to apply fix
-    └── thai-vowel-fix-revert.sh # Script to revert fix
+├── claude-code-thai-vowel-fix/
+│   ├── SUMMARY.md              # Overview and links
+│   ├── BUG_REPORT.md           # Detailed bug report
+│   ├── FIX_DESCRIPTION.md      # Technical fix description
+│   ├── thai-vowel-fix.sh       # Script to apply fix
+│   └── thai-vowel-fix-revert.sh # Script to revert fix
+└── opencode-line-integration/
+    └── SUMMARY.md              # Overview, links, architecture
 ```
 
-## Quick Fix Scripts
+## Claude Code Thai Vowel Fix
 
 สคริปต์สำหรับแก้ปัญหาสระอา (า) และสระอำ (ำ) แสดงผลไม่ถูกต้องใน Claude Code
 
-### Apply Fix
 ```bash
 cd claude-code-thai-vowel-fix
-./thai-vowel-fix.sh
+./thai-vowel-fix.sh        # Apply fix
+./thai-vowel-fix-revert.sh # Revert fix
 ```
 
-### Revert Fix
-```bash
-./thai-vowel-fix-revert.sh
-```
-
-### Notes
+**Notes:**
 - ใช้ `./script.sh` หรือ `bash script.sh` (ห้ามใช้ `sh script.sh`)
 - ไม่ต้องใช้ `sudo` ถ้าติดตั้ง Node.js ผ่าน nvm
 - ต้องรันใหม่หลัง `claude update`
+
+## OpenCode LINE Integration
+
+LINE Messaging API integration สำหรับ OpenCode AI coding agent
+
+| Version | Description | Run |
+|---------|-------------|-----|
+| [PR #13799](https://github.com/anomalyco/opencode/pull/13799) | Monorepo (`@opencode-ai/sdk`) | `cd packages/line && bun dev` |
+| [opencode-line](https://github.com/monthop-gmail/opencode-line) | Standalone (Docker Compose) | `docker compose up -d` |
+
+See [SUMMARY.md](opencode-line-integration/SUMMARY.md) for details.
 
 ## About
 
