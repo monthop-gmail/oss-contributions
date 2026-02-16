@@ -8,6 +8,7 @@ Open Source Contributions - Bug reports, fixes, and technical analysis.
 |---------|-------|--------|-------------|
 | [Claude Code](https://github.com/anthropics/claude-code) | [#21149](https://github.com/anthropics/claude-code/issues/21149) | Reported | Thai vowels (สระอา, สระอำ) not displaying |
 | [OpenCode](https://github.com/anomalyco/opencode) | [#13801](https://github.com/anomalyco/opencode/issues/13801) / [PR #13799](https://github.com/anomalyco/opencode/pull/13799) / [opencode-line](https://github.com/monthop-gmail/opencode-line) | CI Passed | LINE Messaging API integration for OpenCode AI coding agent |
+| [Claude Code](https://github.com/anthropics/claude-code) | [claude-code-line](https://github.com/monthop-gmail/claude-code-line) | Released | LINE Messaging API bridge for Claude Code CLI |
 
 ## Structure
 
@@ -20,7 +21,9 @@ oss-contributions/
 │   ├── FIX_DESCRIPTION.md      # Technical fix description
 │   ├── thai-vowel-fix.sh       # Script to apply fix
 │   └── thai-vowel-fix-revert.sh # Script to revert fix
-└── opencode-line-integration/
+├── opencode-line-integration/
+│   └── SUMMARY.md              # Overview, links, architecture
+└── claude-code-line-integration/
     └── SUMMARY.md              # Overview, links, architecture
 ```
 
@@ -49,6 +52,16 @@ LINE Messaging API integration สำหรับ OpenCode AI coding agent
 | [opencode-line](https://github.com/monthop-gmail/opencode-line) | Standalone (Docker Compose) | `docker compose up -d` |
 
 See [SUMMARY.md](opencode-line-integration/SUMMARY.md) for details.
+
+## Claude Code LINE Integration
+
+LINE Messaging API bridge สำหรับ Claude Code CLI
+
+| Repo | Description | Run |
+|------|-------------|-----|
+| [claude-code-line](https://github.com/monthop-gmail/claude-code-line) | Docker Compose (node + bun + claude CLI) | `docker compose up -d` |
+
+See [SUMMARY.md](claude-code-line-integration/SUMMARY.md) for details.
 
 ## About
 
