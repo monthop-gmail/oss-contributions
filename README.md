@@ -7,6 +7,7 @@ Open Source Contributions - Bug reports, fixes, and technical analysis.
 | Project | Issue | Status | Description |
 |---------|-------|--------|-------------|
 | [Claude Code](https://github.com/anthropics/claude-code) | [#21149](https://github.com/anthropics/claude-code/issues/21149) | Reported | Thai vowels (สระอา, สระอำ) not displaying |
+| [OpenCode](https://github.com/anomalyco/opencode) | [opencode-line](https://github.com/monthop-gmail/opencode-line) | Released | LINE Messaging API integration for OpenCode AI coding agent |
 
 ## Structure
 
