@@ -30,6 +30,7 @@ Project Filesystem (/workspace)
 | Docker services | 3 (server, bot, tunnel) | 2 (bot+CLI, tunnel) |
 | Session resume | REST API session ID | `--resume <session_id>` flag |
 | Auth | Basic auth (OPENCODE_PASSWORD) | ANTHROPIC_API_KEY |
+| Providers | OpenCode built-in | Anthropic, Z.AI, OpenRouter |
 
 ## Key Technical Details
 
@@ -40,6 +41,7 @@ Project Filesystem (/workspace)
 - `delete env.CLAUDECODE` before spawn to prevent nesting check
 - Session expired auto-retry (if `--resume` fails, start fresh session)
 - Cost tracking from `total_cost_usd` in JSON output
+- OpenRouter support via `ANTHROPIC_BASE_URL=https://openrouter.ai/api` proxy
 
 ## Commands
 
@@ -53,8 +55,9 @@ Project Filesystem (/workspace)
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `ANTHROPIC_API_KEY` | - | Anthropic API key (required) |
-| `CLAUDE_MODEL` | `sonnet` | Claude model |
+| `ANTHROPIC_API_KEY` | - | API key (Anthropic or OpenRouter) |
+| `ANTHROPIC_BASE_URL` | (default) | API base URL (e.g. `https://openrouter.ai/api`) |
+| `CLAUDE_MODEL` | `sonnet` | Claude model (`haiku`, `sonnet`, `opus`) |
 | `CLAUDE_MAX_TURNS` | `10` | Max agentic turns per prompt |
 | `CLAUDE_MAX_BUDGET_USD` | `1.00` | Max spend per prompt |
 | `CLAUDE_TIMEOUT_MS` | `300000` | Timeout per prompt (5 min) |
