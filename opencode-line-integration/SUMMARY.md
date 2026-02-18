@@ -36,7 +36,7 @@ User (LINE app)
   ↕  LINE Messaging API webhook
 LINE Bot (Bun HTTP server)
   ↕  @opencode-ai/sdk or fetch()
-OpenCode Server
+OpenCode Server (big-pickle model, free)
   ↕
 Project Filesystem
 ```
@@ -47,10 +47,47 @@ Project Filesystem
 - `/new` - Start a new coding session
 - `/abort` - Cancel the current prompt
 - `/sessions` - Show active session info
+- `/help` - Show all available commands
+- `/about` - Bot introduction and info
+- `/cny` - CNY greetings
 
-## Key Technical Details
+## Features
 
+### Core
 - LINE webhook signature validation (HMAC-SHA256)
 - Message chunking for LINE's 5000 char limit (respects code blocks)
 - Session mapping: LINE userId → OpenCode sessionId
-- Real-time tool update notifications (file edits, bash commands)
+- Big-pickle free model (200K context, $0 cost)
+
+### Group Chat Support
+- Bot join/leave event handling with welcome message
+- Session key uses groupId (shared session for all group members)
+- 1:1 chat uses userId (private session per user)
+
+### Image Message Support
+- Download images via MessagingApiBlobClient (LINE SDK v9)
+- Forward to OpenCode session with acknowledgment
+
+### Robustness
+- Prompt prefix prevents interactive question tool blocking
+- 2-min timeout with partial response polling fallback
+- Response extraction from all part types (text, reasoning, tool/question)
+
+## Key Technical Details
+
+- LINE Bot SDK v9: uses `MessagingApiBlobClient` for binary content (image download)
+- OpenCode question tool fix: prompt prefix instructs AI to respond directly without using interactive question tool, which blocks the REST API indefinitely
+- Timeout handling: `AbortController` with 120s timeout, on timeout aborts session and fetches partial response via `GET /session/{id}/message`
+- `extractResponse()`: handles text, reasoning, and tool/question part types as fallback
+
+## Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `LINE_CHANNEL_ACCESS_TOKEN` | - | LINE Messaging API token |
+| `LINE_CHANNEL_SECRET` | - | LINE channel secret |
+| `LINE_OA_URL` | - | LINE Official Account URL |
+| `OPENCODE_URL` | `http://opencode:4096` | OpenCode server URL |
+| `OPENCODE_PASSWORD` | `changeme` | OpenCode server password |
+| `OPENCODE_DIR` | `/workspace` | Working directory |
+| `PROMPT_TIMEOUT_MS` | `120000` | Prompt timeout (2 min) |
