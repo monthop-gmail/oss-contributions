@@ -63,6 +63,8 @@ Project Filesystem
 - Bot join/leave event handling with welcome message
 - Session key uses groupId (shared session for all group members)
 - 1:1 chat uses userId (private session per user)
+- Mention filter: bot only responds when `@bot`, `opencode` prefix, or `/commands` in group
+- Ignores other group messages to avoid rate limiting
 
 ### Image Message Support
 - Download images via MessagingApiBlobClient (LINE SDK v9)
@@ -72,6 +74,9 @@ Project Filesystem
 - Prompt prefix prevents interactive question tool blocking
 - 2-min timeout with partial response polling fallback
 - Response extraction from all part types (text, reasoning, tool/question)
+- Uses replyMessage (free, no quota) before falling back to pushMessage
+- Retry with backoff (5s, 10s) on LINE 429 rate limit
+- LINE free plan: 300 push messages/month, replyMessage unlimited
 
 ## Key Technical Details
 
