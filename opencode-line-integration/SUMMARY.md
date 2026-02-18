@@ -63,8 +63,8 @@ Project Filesystem
 - Bot join/leave event handling with welcome message
 - Session key uses groupId (shared session for all group members)
 - 1:1 chat uses userId (private session per user)
-- Mention filter: bot only responds when `@bot`, `opencode` prefix, or `/commands` in group
-- Ignores other group messages to avoid rate limiting
+- AI-powered message filtering: AI decides if message is directed at it, responds `[SKIP]` for unrelated group conversations
+- No manual trigger needed (@bot, prefix) - natural group chat experience
 
 ### Image Message Support
 - Download images via MessagingApiBlobClient (LINE SDK v9)
